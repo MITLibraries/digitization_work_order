@@ -7,29 +7,32 @@ class DOReport
 
   BASE_COLUMNS = [
     {:header => "Resource ID",           :proc => Proc.new {|resource, item| resource_id(resource)}},
-    {:header => "Ref ID",                :proc => Proc.new {|resource, item| ref_id(item)}},
-    {:header => "URI",                   :proc => Proc.new {|resource, item| record_uri(item)}},
+    {:header => "Title",                 :proc => Proc.new {|resource, item| record_title(item)}},
+    {:header => "Dates",                 :proc => Proc.new {|resource, item, dates| date_string(dates)}},
+    {:header => "Series",                :proc => Proc.new { |resource, item, dates, box, series| record_title(series) }},
     {:header => "Container Indicator 1", :proc => Proc.new {|resource, item, dates, box| indicator_1(box)}},
     {:header => "Container Indicator 2", :proc => Proc.new {|resource, item, dates, box| indicator_2(box)}},
-    {:header => "Container Indicator 3", :proc => Proc.new {|resource, item, dates, box| indicator_3(box)}},
-    {:header => "Title",                 :proc => Proc.new {|resource, item| record_title(item)}},
     {:header => "Component ID",          :proc => Proc.new {|resource, item| component_id(item)}},
+    {:header => "Barcode",               :proc => Proc.new {|resource, item, dates, box| barcode(box)}},
+    {:header => "Ref ID",                :proc => Proc.new {|resource, item| ref_id(item)}}
   ]
 
+ # DATES_COLUMNS = [
+ # ]
+
   SERIES_COLUMNS = [
-    {:header => "Series",                :proc => Proc.new { |resource, item, dates, box, series| record_title(series) }}
   ]
 
   SUBSERIES_COLUMNS = [
     {:header => "Sub-Series",            :proc => Proc.new { |resource, item, dates, box, series, subseries| record_title(subseries) }}
   ]
 
-  BARCODE_COLUMNS = [
-    {:header => "Barcode",               :proc => Proc.new {|resource, item, dates, box| barcode(box)}}
-  ]
+ BARCODE_COLUMNS = [
+#   {:header => "Barcode",               :proc => Proc.new {|resource, item, dates, box| barcode(box)}}
+ ]
 
   DATES_COLUMNS = [
-    {:header => "Dates",                 :proc => Proc.new {|resource, item, dates| date_string(dates)}}
+#     {:header => "Dates",                 :proc => Proc.new {|resource, item, dates| date_string(dates)}}
   ]
 
 
